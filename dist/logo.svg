@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="438" height="72" viewBox="0 0 438 72" role="img" aria-labelledby="t d">
+<title id="t">Loodgieter Vakmannen</title><desc id="d">Koperen leiding en waterdruppel naast de bedrijfsnaam</desc>
+<g fill="none" stroke="#E8A66B" stroke-width="7" stroke-linecap="round" stroke-linejoin="round">
+<path d="M17 13v24a19 19 0 0 0 38 0V13"/><path d="M11 13h12M49 13h12" stroke-width="6"/>
+</g>
+<path d="M36 27c4 6 7 10 7 14a7 7 0 0 1-14 0c0-4 3-8 7-14Z" fill="#68B8D6"/>
+<text x="79" y="32" fill="#FFFFFF" font-family="Arial, Helvetica, sans-serif" font-size="27" font-weight="700" letter-spacing="-.9">Loodgieter</text>
+<text x="79" y="60" fill="#E8A66B" font-family="Arial, Helvetica, sans-serif" font-size="26" font-weight="700" letter-spacing="-.9">Vakmannen</text>
+</svg>
