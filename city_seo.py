@@ -42,6 +42,9 @@ CONTENT = {
 }
 
 CONTENT.update(additional_content())
+from groningen_content import BODY as GRONINGEN_BODY
+CONTENT['groningen']['body'] = GRONINGEN_BODY
+CONTENT['groningen']['description'] = 'Loodgieter Groningen nodig? Vraag lekkage, verstopping, sanitair of cv- en leidingwerk aan via WhatsApp. Vermeld Groningen en je gewenste moment.'
 
 def city_details(slug):
     entry = CONTENT.get(slug)
@@ -50,6 +53,8 @@ def city_details(slug):
     name = entry['name']
     canonical = f'https://loodgietervakmannen.nl/loodgieter-{slug}/'
     title = f'Loodgieter {name} | Lekkage, verstopping & sanitair'
+    if slug == 'groningen':
+        title = 'Loodgieter Groningen | Spoed, lekkage & leidingwerk'
     schema = {
         '@context': 'https://schema.org', '@graph': [
             {'@type': 'WebPage', '@id': canonical + '#webpage', 'url': canonical,

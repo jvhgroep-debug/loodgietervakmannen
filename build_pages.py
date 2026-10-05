@@ -22,8 +22,13 @@ favicon='<link rel="icon"'+favicon+'>'
 form='<form class="card" id="leadForm">'+s.split('<form class="card" id="leadForm">',1)[1].split('</form>',1)[0]+'</form>'
 form_script='<script>'+s.split('<script>',1)[1].split('</script>',1)[0]+'</script>'
 def page(route,title,description,hero,lead,body,hero_class=''):
+    if route == 'loodgieter-groningen':
+        hero = 'Loodgieter Groningen'
     city=({'denhaag':'Den Haag'}.get(route.split('loodgieter-',1)[1],route.split('loodgieter-',1)[1].capitalize())) if route.startswith('loodgieter-') else ''
     local_form=form.replace('placeholder="Bijv. Breda"',f'value="{city}"' if city else 'placeholder="Bijv. Breda"')
+    local_floatlink = floatlink
+    if route == 'loodgieter-groningen':
+        local_floatlink = floatlink.replace('text=Hallo%2C%20ik%20heb%20een%20vraag%20over%20een%20loodgietersklus.', 'text=Hallo%2C%20ik%20heb%20een%20loodgietersklus%20in%20Groningen.').replace('aria-label="Stel je vraag via WhatsApp"', 'aria-label="Vraag loodgieterswerk in Groningen aan via WhatsApp"')
     preload=f'<link rel="preload" as="image" href="/hero-{route.split("loodgieter-",1)[1]}.webp">' if route.startswith('loodgieter-') else ''
     canonical=f'https://loodgietervakmannen.nl/{route}/'
     image=f'https://loodgietervakmannen.nl/hero-{route.split("loodgieter-",1)[1]}.webp' if city else 'https://loodgietervakmannen.nl/og.png'
@@ -32,7 +37,7 @@ def page(route,title,description,hero,lead,body,hero_class=''):
             f'<meta property="og:description" content="{escape(description,quote=True)}"><meta property="og:image" content="{image}">'
             f'<meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="{escape(title,quote=True)}">'
             f'<meta name="twitter:description" content="{escape(description,quote=True)}"><meta name="twitter:image" content="{image}">')
-    markup=f'''{headprefix}<title>{escape(title)}</title><meta name="description" content="{escape(description,quote=True)}"><link rel="canonical" href="https://loodgietervakmannen.nl/{route}/">{favicon}{preload}{social}<style>{css}</style></head><body>{nav}<main><section class="subhero form-hero {hero_class}"><div class="wrap"><div class="page-hero-copy"><div class="bread"><a href="/">Home</a> / {escape(hero)}</div><h1>{escape(hero)}</h1><p>{escape(lead)}</p></div><div id="aanvraag" class="hero-form">{local_form}</div></div></section>{body}</main>{footer}{floatlink}{form_script}</body></html>'''
+    markup=f'''{headprefix}<title>{escape(title)}</title><meta name="description" content="{escape(description,quote=True)}"><link rel="canonical" href="https://loodgietervakmannen.nl/{route}/">{favicon}{preload}{social}<style>{css}</style></head><body>{nav}<main><section class="subhero form-hero {hero_class}"><div class="wrap"><div class="page-hero-copy"><div class="bread"><a href="/">Home</a> / {escape(hero)}</div><h1>{escape(hero)}</h1><p>{escape(lead)}</p></div><div id="aanvraag" class="hero-form">{local_form}</div></div></section>{body}</main>{footer}{local_floatlink}{form_script}</body></html>'''
     path=root/route/'index.html';path.parent.mkdir(parents=True,exist_ok=True);path.write_text(markup)
 # Place pages have distinct, modest content. No invented availability, credentials or response promises.
 local={
